@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Postagens</title>
+    <link rel="stylesheet" href="/postagem.css">
+</head>
+<body>
+<!-- Formulário de Cadastro -->
+<form th:action="@{/fazer-postagem}" method="post">
+
+    <h1>Cadastro de Postagens</h1>
+
+    <label for="autor">Nome de Usuário:</label>
+    <input type="text" id="autor" name="autor" required><br>
+
+    <label for="texto">Conteúdo da Postagem:</label>
+    <textarea id="texto" name="texto" required>
+    </textarea><br>
+
+    <button type="submit">Cadastrar postagem</button>
+
+    <div th:if="${mensagem}">
+        <p th:text="${mensagem}"></p>
+    </div>
+</form>
+
+
+</body>
+</html>

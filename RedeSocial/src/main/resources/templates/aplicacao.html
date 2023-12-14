@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Postagens</title>
+    <link rel="stylesheet" href="/aplicacao.css">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <a href="aplicacao">Início</a>
+        <a href="postagem">Postagens</a>
+
+        <div class="menu-engrenagem">
+            <input type="checkbox" id="menu-toggle" />
+            <label class="menu-btn" for="menu-toggle">☰</label>
+            <ul class="menu-list">
+                <li><a href="#configuracoes">Configurações</a></li>
+                <li><a href="redeSocial">Sair</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section id="inicio">
+        <h1>Bem-vindo à nossa aplicação</h1>
+
+        <!-- Seção de formulário -->
+        <form action="/aplicacao" method="get">
+            <label for="opcoes">Selecione uma opção:</label>
+            <select required id="opcoes" name="opcoes">
+                <option th:each="opcao : ${opcoes}" th:value="${opcao}" th:text="${opcao}"></option>
+            </select>
+
+            <label for="orders">Ordenação:</label>
+            <select required id="orders" name="orders">
+                <option value="asc">Crescente</option>
+                <option value="desc">Decrescente</option>
+            </select>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <div th:if="${mensagem != null}">
+            <p th:text="${mensagem}"></p>
+        </div>
+
+        <div th:if="${post != null and not #lists.isEmpty(post)}">
+            <h2>Lista de Postagens</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Autor</th>
+                    <th>Texto</th>
+                    <th>Data</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p : ${post}">
+                    <td th:text="${p.autor}"></td>
+                    <td th:text="${p.texto}"></td>
+                    <td th:text="${p.data}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+</body>
+
+</html>
